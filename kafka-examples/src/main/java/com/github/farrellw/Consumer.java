@@ -12,9 +12,9 @@ import java.time.Duration;
 import java.util.Arrays;
 import java.util.Properties;
 
-public class ConsumerDemo {
+public class Consumer {
     public static void main(String[] args) {
-        Logger logger =  LoggerFactory.getLogger(ConsumerDemo.class.getName());
+        Logger logger =  LoggerFactory.getLogger(Consumer.class.getName());
 
         String bootstrapServer = "127.0.0.1:9092";
         // String gcpBootstrapServer = "35.225.183.78:9092";

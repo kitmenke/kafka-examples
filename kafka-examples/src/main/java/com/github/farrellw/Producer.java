@@ -2,6 +2,7 @@ package com.github.farrellw;
 
 import java.util.Properties;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.javafaker.Faker;
 import org.apache.kafka.clients.producer.Callback;
@@ -14,14 +15,14 @@ import org.apache.kafka.common.serialization.StringSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ProducerDemo {
+public class Producer {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws JsonProcessingException {
         String bootstrapServer = "127.0.0.1:9092";
         // String gcpBootstrapServer = "35.225.183.78:9092";
         String topic = "orders";
 
-        Logger logger = LoggerFactory.getLogger(ProducerDemo.class);
+        Logger logger = LoggerFactory.getLogger(Producer.class);
 
         // create Producer properties
         Properties properties = new Properties();
@@ -39,31 +40,25 @@ public class ProducerDemo {
         for (int i = 0; i < 10; i++) {
             Order order = new Order(faker.commerce().price(), faker.commerce().productName());
             String customerId = Integer.toString(i);
-            try {
-                String jsonString = objectMapper.writeValueAsString(order);
+            String jsonString = objectMapper.writeValueAsString(order);
 
-                ProducerRecord<String, String> record = new ProducerRecord<String, String>(topic, customerId, jsonString);
+            ProducerRecord<String, String> record = new ProducerRecord<String, String>(topic, customerId, jsonString);
 
-                // send data
-                producer.send(record, new Callback() {
-                    public void onCompletion(RecordMetadata recordMetadata, Exception e) {
-                        if (e == null) {
+            // send data
+            producer.send(record, new Callback() {
+                public void onCompletion(RecordMetadata recordMetadata, Exception e) {
+                    if (e == null) {
 //                            logger.info("Received new metadata. \n" + "Topic:" + recordMetadata.topic() + "\n"
 //                                    + "Partition:" + recordMetadata.partition() + "\n" + "Offset: "
 //                                    + recordMetadata.offset() + "\n" + "Timestamp: " + recordMetadata.timestamp());
-                        } else {
-                            logger.error("Error while producing", e);
-                        }
+                    } else {
+                        logger.error("Error while producing", e);
                     }
-                });
-            } catch (Exception e){
-                System.out.println(e.toString());
-            }
+                }
+            });
 
         }
-        // create producer record
 
-        // flush
         producer.flush();
 
         // flush and close
