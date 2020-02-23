@@ -13,7 +13,7 @@ public class Order {
     @Override
     public String toString()
     {
-        return "Organisation [price="
+        return "Order [price="
                 + price
                 + ", item="
                 + item
