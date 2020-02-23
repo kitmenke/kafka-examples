@@ -39,6 +39,7 @@ public class Consumer {
             ConsumerRecords<String, String> records = consumer.poll(duration);
             for(ConsumerRecord<String, String> record : records){
                 logger.info("Key: " + record.key() + " ,Value: " + record.value());
+                logger.info("Partition: " + record.partition() + " ,Offset " + record.offset());
             }
         }
     }
