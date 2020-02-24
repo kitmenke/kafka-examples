@@ -17,7 +17,7 @@ kafka-server-start config/server2.properties
 Source: https://www.michael-noll.com/blog/2013/03/13/running-a-multi-broker-apache-kafka-cluster-on-a-single-node/
 
 ## CLI
-Found in /CLI/COMMANDS.md
+Found in CLI/COMMANDS.md
 
 ## JAVA Programs
 kafka-examples
