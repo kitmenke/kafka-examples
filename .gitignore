@@ -7,3 +7,6 @@ kafka-examples/.settings
 kafka-examples/target
 **/*.iml
 target
+.classpath
+.settings
+.project
