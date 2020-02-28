@@ -19,5 +19,8 @@ Source: https://www.michael-noll.com/blog/2013/03/13/running-a-multi-broker-apac
 ## CLI
 Found in CLI/COMMANDS.md
 
-## JAVA Programs
-kafka-examples
+## Python Consumer and Producer
+Found in python directory
+
+## Java Consumer and Producer
+Found in src
