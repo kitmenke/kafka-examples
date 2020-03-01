@@ -16,12 +16,12 @@ public class Consumer {
     public static void main(String[] args) {
         Logger logger =  LoggerFactory.getLogger(Consumer.class.getName());
 
-        String bootstrapServer = "127.0.0.1:9092";
-        // String gcpBootstrapServer = "35.225.183.78:9092";
+//        String bootstrapServer = "127.0.0.1:9092";
+         String gcpBootstrapServer = "35.208.65.122:9092";
         String topic = "orders";
 
         Properties properties = new Properties();
-        properties.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServer);
+        properties.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, gcpBootstrapServer);
         properties.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, "my-first-application");
